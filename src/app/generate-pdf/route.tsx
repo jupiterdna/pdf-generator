@@ -20,16 +20,16 @@ export async function POST(request: Request) {
     const base64 = await Buffer.from(buffer).toString("base64");
     // fs.writeFileSync('public/test.pdf', base64, );
    
-    const filePath = `public/pdf/${fileName}`;
-    const asPdf = await fsP.writeFile(filePath, base64, "base64");
+    // const filePath = `public/pdf/${fileName}`;
+    // const asPdf = await fsP.writeFile(filePath, base64, "base64");
 
-    setTimeout(() => {
-      deleteFile(filePath);
-    }, 1000 * 60);
+    // setTimeout(() => {
+    //   deleteFile(filePath);
+    // }, 1000 * 60);
 
-    const url = `${process.env.HOST}/pdf/${fileName}`;
+    // const url = `${process.env.HOST}/pdf/${fileName}`;
 
-    return Response.json({ data: url }, { status: 200 });
+    return Response.json({ data: base64 }, { status: 200 });
   } catch (error) {
     return Response.json({ error: `There is an error in generating pdf`, message: error }, { status: 400 });
   }
