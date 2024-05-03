@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
     // const url = `${process.env.HOST}/pdf/${fileName}`;
 
-    return Response.json({ data: base64 }, { status: 200 });
+    return Response.json({ data: 'data:application/pdf;base64,'+base64 }, { status: 200 });
   } catch (error) {
     return Response.json({ error: `There is an error in generating pdf`, message: error }, { status: 400 });
   }
