@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       deleteFile(filePath);
     }, 1000 * 60);
 
-    const url = `http://${process.env.HOST}:${process.env.PORT}/pdf/${fileName}`;
+    const url = `${process.env.HOST}:${process.env.PORT}/pdf/${fileName}`;
 
     return Response.json({ data: url }, { status: 200 });
   } catch (error) {
