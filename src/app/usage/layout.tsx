@@ -16,7 +16,7 @@ export default function Layout({
     <div className="h-screen flex flex-col">
           <div className="bg-blue-400 p-4 flex justify-center">
             <div className="max-w-[1600px] w-full">
-              <h1 className="text-xl text-white">PDF Generator</h1>
+              <h1 className="text-xl text-white">DNA PDF Generator</h1>
             </div>
           </div>
            <div className="justify-center flex h-full">

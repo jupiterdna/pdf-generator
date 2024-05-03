@@ -1,13 +1,14 @@
-const url = process.env.HOST+'/generate-pdf';
 
-export const usage = `import axios from 'axios';
+
+export const usage = `
+import axios from 'axios';
 import React from 'react';
 import {data} from './data';  
 
 const App = () => {
 
     const generatePDFfile = async () => {
-        const response = await axios.post('${url}',  data)
+        const response = await axios.post('https://pdf-generator-two-iota.vercel.app/generate-pdf',  data)
         console.log('PDF source result: ', response.data)
         // PDF source result:  {data: 'data:application/pdf;base64,JVBERi0xLjcKJc...'}
     }
@@ -24,7 +25,8 @@ const App = () => {
     )
 }
 
-export default App;`
+export default App;
+`
 
 export const usageReceipt = `import axios from 'axios';
 import React from 'react';
@@ -33,7 +35,7 @@ import {receiptData} from './data';
 const App = () => {
 
     const generatePDFfile = async () => {
-        const response = await axios.post('${url}',  data)
+        const response = await axios.post('https://pdf-generator-two-iota.vercel.app/generate-pdf',  receiptData)
         console.log('PDF source result: ', response.data)
         // PDF source result:  {data: 'data:application/pdf;base64,JVBERi0xLjcKJc...'}
     }
