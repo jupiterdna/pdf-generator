@@ -11,6 +11,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "No data provided" }, { status: 400 });
   }
 
+  const fileName = `${uuidv4()}.pdf`;
   try {
     const data = JSON.parse(reqBody);
     const template = data?.document_type === "contract" ? temp : receipt;
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
     const buffer = await blob.arrayBuffer();
     const base64 = await Buffer.from(buffer).toString("base64");
     // fs.writeFileSync('public/test.pdf', base64, );
-    const fileName = `${uuidv4()}.pdf`;
+   
     const filePath = `public/pdf/${fileName}`;
     const asPdf = await fsP.writeFile(filePath, base64, "base64");
 
@@ -30,7 +31,8 @@ export async function POST(request: Request) {
 
     return Response.json({ data: url }, { status: 200 });
   } catch (error) {
-    return Response.json({ error: 'Thers an error in generating pdf' }, { status: 400 });
+    const xxx = `${process.env.HOST}:${process.env.PORT}/pdf/${fileName}`;
+    return Response.json({ error: `There is an error in generating pdf ${xxx}`, err: error }, { status: 400 });
   }
 }
 
