@@ -1,5 +1,5 @@
 import { StyleSheet, Font } from "@react-pdf/renderer";
-const path = `${process.env.HOST}:${process.env.PORT}/`;
+const path = `${process.env.HOST}`;
 
 Font.register({
   family: "krona",
@@ -12,11 +12,11 @@ Font.register({
   fonts: [
     {
       fontWeight: "normal",
-      src: `${path}font/Karla.ttf`,
+      src: `${path}/font/Karla.ttf`,
     },
     {
       fontWeight: "bold",
-      src: `${path}font/Karla-Bold.ttf`,
+      src: `${path}/font/Karla-Bold.ttf`,
     },
   ],
 });

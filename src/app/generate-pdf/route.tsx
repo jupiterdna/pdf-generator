@@ -27,12 +27,11 @@ export async function POST(request: Request) {
       deleteFile(filePath);
     }, 1000 * 60);
 
-    const url = `${process.env.HOST}:${process.env.PORT}/pdf/${fileName}`;
+    const url = `${process.env.HOST}/pdf/${fileName}`;
 
     return Response.json({ data: url }, { status: 200 });
   } catch (error) {
-    const xxx = `${process.env.HOST}:${process.env.PORT}/pdf/${fileName}`;
-    return Response.json({ error: `There is an error in generating pdf ${xxx}`, err: error }, { status: 400 });
+    return Response.json({ error: `There is an error in generating pdf`, message: error }, { status: 400 });
   }
 }
 
