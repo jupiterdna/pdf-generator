@@ -17,13 +17,12 @@ export default function Page() {
           <SideBar />
           <main className="p-12 text-gray-600 w-full">
             <div className="w-full">
-              <h2 className="text-4xl mb-4 pb-3 border-b border-gray-200">
-                Introduction
+              <h2 className="text-4xl mb-4 pb-3 border-b border-gray-200 flex items-center gap-x-2">
+                Introduction <span className="italic text-red-400 text-2xl">(experimental only!)</span>
               </h2>
               <p className="mb-8 mt-8 text-lg">
-                Welcome to the documentation for our online PDF Converter. This
-                web application allows you to convert your data into a PDF
-                format.
+                Welcome to the documentation for PDF Contract and Receipt PDF Generator. This
+                web application allows you to convert data into a PDF <span className="italic">(base64 format in Vercel)</span>.
               </p>
 
               <h2 className="mb-4 text-2xl">API Documentation</h2>
