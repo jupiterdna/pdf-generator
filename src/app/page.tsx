@@ -21,7 +21,7 @@ export default function Page() {
                 Introduction <span className="italic text-red-400 text-2xl">(experimental only!)</span>
               </h2>
               <p className="mb-8 mt-8 text-lg">
-                Welcome to the documentation for PDF Contract and Receipt PDF Generator. This
+                Welcome to the documentation for Contract and Receipt PDF Generator. This
                 web application allows you to convert data into a PDF <span className="italic">(base64 format in Vercel)</span>.
               </p>
 
