@@ -19,16 +19,17 @@ export default function TemplateContract() {
           text={usage}
           language={"jsx"}
           showLineNumbers={true}
+          codeBlock
           theme={atomOneDark}
         />
       </div>
 
       <div className="mt-12">
         <p className="text-lg mb-4">Sample Data to generate Contract PDF</p>
-        <div className="h-[600px]">
+        <div className="h-[600px] text-sm">
           <CopyBlock
             text={contractData}
-            language={"typescript"}
+            language={"jsx"}
             showLineNumbers={true}
             theme={atomOneDark}
             wrapLongLines={true}

@@ -13,8 +13,10 @@ export const metadata = {
   description: "This is a PDF generator for Go Rentals",
 };
 import "../globals.css";
-import SideBar from "@/component/web/Sidebar";
+import { AppProvider } from "@/component/context/context";
 const roboto = Roboto({ subsets:['latin'], weight: ['400', '700']});
+
+
 
 export default function RootLayout({
   children,

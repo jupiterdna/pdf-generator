@@ -1,19 +1,21 @@
 'use client';
 
-import { SidebarContext } from "@/app/page";
 import React from "react";
+import { SidebarContext } from "../context/context";
+import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
 
-    const context = React.useContext(SidebarContext);
+    const searchParams = useSearchParams();
+    const sidebarOpen = searchParams?.get("sidebar");
+    const pathname = usePathname();
 
   return (
     <div className="bg-blue-400 p-4 flex justify-center">
       <div className="max-w-[1600px] w-full flex-row flex items-center justify-between">
         <h1 className="text-xl text-white">DNA PDF Generator</h1>
-        <button className="lg:hidden text-white text-lg" onClick={() => {
-            context.setIsOpen(!context.isOpen);
-        }}><i className={`fa ${context.isOpen ? 'fa-times' : 'fa-bars'}`}></i></button>
+        <Link className="lg:hidden text-white text-lg"  href={sidebarOpen ? pathname || '' : '?sidebar=1'}><i className={`fa  ${sidebarOpen ? 'fa-times' : 'fa-bars'} `}></i></Link>
       </div>
     </div>
   );

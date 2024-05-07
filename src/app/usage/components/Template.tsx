@@ -18,6 +18,7 @@ export default function Template() {
         <CopyBlock
           text={usageReceipt}
           language={"jsx"}
+          codeBlock
           showLineNumbers={true}
           theme={atomOneDark}
         />
@@ -25,11 +26,12 @@ export default function Template() {
 
       <div className="mt-12">
         <p className="text-lg mb-4">Sample Data to generate Receipt PDF</p>
-        <div className="h-[600px]">
+        <div className="h-[600px] text-sm">
           <CopyBlock
             text={receipt}
-            language={"typescript"}
+            language={"jsx"}
             showLineNumbers={true}
+            
             theme={atomOneDark}
             wrapLongLines={true}
           />

@@ -1,18 +1,14 @@
 "use client";
 
+import { AppProvider } from "@/component/context/context";
 import Header from "@/component/web/Header";
 import SideBar from "@/component/web/Sidebar";
 import Link from "next/link";
-import { createContext, useState } from "react";
 import { CopyBlock, atomOneDark } from "react-code-blocks";
 
-export const SidebarContext = createContext<any>(null);
-
 export default function Page() {
-  const [isOpen, setIsOpen] = useState();
-
   return (
-    <SidebarContext.Provider value={{ isOpen, setIsOpen }}>
+    <AppProvider>
       <div className="h-screen flex flex-col">
         <Header />
         <div className="justify-center flex h-full">
@@ -63,6 +59,6 @@ POST https://pdf-generator-two-iota.vercel.app/generate-pdf
           </div>
         </div>
       </div>
-    </SidebarContext.Provider>
+    </AppProvider>
   );
 }
