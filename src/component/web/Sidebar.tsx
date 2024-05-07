@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 import { SidebarContext } from "../context/context";
 
 export default function SideBar() {
@@ -15,7 +15,8 @@ export default function SideBar() {
 
 
   return (
-    <aside className={`lg:p-4 fixed lg:static  lg:opacity-100 lg:w-[300px] text-gray-600 h-full border-r border-gray-100 ${cls}`}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <aside className={`lg:p-4 fixed lg:static  lg:opacity-100 lg:w-[300px] text-gray-600 h-full border-r border-gray-100 ${cls}`}>
       <ul className="flex flex-col gap-y-1 text-lg">
         <li className={`${pathname === "/" ? "font-bold" : ""} `}>
           <Link href="/">Introduction</Link>
@@ -29,5 +30,6 @@ export default function SideBar() {
         </li>
       </ul>
     </aside>
+    </Suspense>
   );
 }
