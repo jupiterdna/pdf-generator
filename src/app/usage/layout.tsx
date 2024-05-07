@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="justify-center flex h-full">
         <div className="flex flex-row max-w-[1600px] h-full w-full ">
           <SideBar />
-          <main className="p-12 text-gray-600 w-full">{children}</main>
+          <main className="p-4 lg:p-12 text-gray-600 w-full">{children}</main>
         </div>
       </div>
     </div>

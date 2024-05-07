@@ -17,7 +17,7 @@ export default function Page({
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl mb-8 pb-3 border-b border-gray-200">Usage for generating {params.type} PDF file</h2>
+      <h2 className="text-xl lg:text-4xl mb-4 pb-3 border-b border-gray-200 flex items-center gap-x-2">Usage for generating {params.type} PDF file</h2>
       {params.type === "contract" ? <TemplateContract /> : <Template />}
     </div>
   );
