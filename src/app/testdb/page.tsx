@@ -1,32 +1,53 @@
-import mysql, { ConnectionOptions } from 'mysql2';
 
-const gateData = () => {
-    const access: ConnectionOptions = {
-        user: 'root',
+
+import { submitForm } from "./action";
+import mysql from 'mysql2/promise';
+
+
+const connect = async () => { 
+  const con = await mysql
+  .createConnection({
+    user: 'root',
         database: 'test_db',
         password: 'example',
         host: 'localhost',
-      };
-      
-      try {
-        const conn = mysql.createConnection(access);
-      
-
-        console.log("conn", conn)
-      
-      conn.query('SELECT * from `tbl_users`;', (_err, rows) => {
-            console.log(rows)
-      });
-    
-      } catch (error) {
-        console.log("errr", error)
-      }
+  })
+  return con
 }
 
-export default function Page() {
+const getData  = async () => {
+  const connection = await connect()
+  const [rows] = await connection.query('SELECT * FROM tbl_users')
+  return rows
 
-    gateData()
+}
+
+
+
+export default async function Page() {
+
+  const data = await getData()
+
   return (
-    <div>pageee</div>
-  )
+    <div className="p-4">
+      <form
+  
+      >
+        <div>
+          <input
+            required
+            type="text"
+            name="name"
+            placeholder="enter name"
+            className="border border-gray-200"
+          />
+        </div>
+        <button formAction={submitForm} type="submit">submit</button>
+      </form>
+
+      {data?.map(d => {
+        return <div key={d.id}> {d.id}-----{d.name}</div>
+      })}
+    </div>
+  );
 }

@@ -18,7 +18,10 @@ services:
 
   db:
     image: mariadb
+    container_name: db
     restart: always
+    ports:
+      - "3306:3306"
     environment:
       MARIADB_ROOT_PASSWORD: example
 
