@@ -1,29 +1,15 @@
 
 
-import { submitForm } from "./action";
-import mysql from 'mysql2/promise';
+import { connect, deleteRow, submitForm } from "./action";
+import Deletebtn from "./components/Deletebtn";
+import Link from "next/link";
 
-
-const connect = async () => { 
-  const con = await mysql
-  .createConnection({
-    user: 'root',
-        database: 'test_db',
-        password: 'example',
-        host: 'localhost',
-  })
-  return con
-}
 
 const getData  = async () => {
   const connection = await connect()
   const [rows] = await connection.query('SELECT * FROM tbl_users')
   return rows
-
 }
-
-
-
 export default async function Page() {
 
   const data = await getData()
@@ -46,7 +32,14 @@ export default async function Page() {
       </form>
 
       {data?.map(d => {
-        return <div key={d.id}> {d.id}-----{d.name}</div>
+        return <div key={d.id}> 
+          <div>
+          {d.id}-----{d.name} ---- <Deletebtn item={d}/>
+          <div>
+            <Link href={`/testdb/${d.id}`}>edit</Link>
+          </div>
+          </div>
+        </div>
       })}
     </div>
   );
