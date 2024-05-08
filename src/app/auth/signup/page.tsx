@@ -1,8 +1,14 @@
-'use client'
-
 import { signup } from "@/app/actions/auth";
+import { getErrorMessage } from "@/app/lib/session";
 
-export default function Page() {
+const hasError = async () => {
+  const err:any = await getErrorMessage();
+  return err ? err.split(",") : []
+};
+
+export default async function Page() {
+  const error: any = await hasError();
+
   return (
     <div>
       <form action={signup}>
@@ -51,6 +57,8 @@ export default function Page() {
           </div>
         </div>
       </form>
+
+      {error?.length && <div className="p-4 text-red-500">{error[1]} {error[0]} is invalid or already used!</div>}
     </div>
   );
 }

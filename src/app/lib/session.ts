@@ -37,6 +37,25 @@ export async function createSession(userId: string) {
     })
   }
 
+export async function saveErrorMessage(errorMessage: string) {
+    const expiresAt = new Date(Date.now() + 5 * 1000)
+    const sesss = await encrypt({ errorMessage, expiresAt })
+
+    cookies().set('errormessage', sesss, {
+        httpOnly: true,
+        secure: true,
+        expires: expiresAt,
+        sameSite: 'lax',
+        path: '/',
+    })
+}
+
+export async function getErrorMessage() { 
+    const cookie = cookies().get('errormessage')?.value
+    const session = await decrypt(cookie)
+    return session?.errorMessage
+}
+
    
 export function deleteSession() {
     cookies().delete('session')

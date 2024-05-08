@@ -1,6 +1,6 @@
 "use server";
 
-import { createSession } from "@/app/lib/session";
+import { createSession, saveErrorMessage } from "@/app/lib/session";
 import { redirect } from "next/navigation";
 import { connect } from "../testdb/action";
 import bcrypt from 'bcrypt'
@@ -8,6 +8,15 @@ import bcrypt from 'bcrypt'
 const hashpass = async (password: string) => { 
     const salt = await bcrypt.genSalt(10)
     return await bcrypt.hash(password, salt)
+}
+
+function getTextValues(str: string): string[] {
+    const regex = /'([^']+)'/g;
+    const matches = str.match(regex);
+    if (matches) {
+        return matches.map((match) => match.slice(1, -1));
+    }
+    return [];
 }
 
 const comparePass = async (password: string, hash: string) => {
@@ -55,18 +64,26 @@ export async function signup(formData: FormData) {
 
   const encryptpass = await hashpass(password)
 
-  await con.query(
-    "INSERT INTO tbl_users (name, email_address, username, password) VALUES (?, ?, ?, ?)",
-    [name, email, username, encryptpass]
-  );
-  await con.query("SELECT * FROM tbl_users WHERE username = ?", [username]);
+  try {
+    await con.query(
+        "INSERT INTO tbl_users (name, email_address, username, password) VALUES (?, ?, ?, ?)",
+        [name, email, username, encryptpass]
+      );
+      await con.query("SELECT * FROM tbl_users WHERE username = ?", [username]);
+    
+      const lastInsert: any = await con.query("SELECT LAST_INSERT_ID() as id");
+    
+      if (lastInsert?.[0]?.length) {
+        await createSession(lastInsert[0][0].id);
+      }
+    
+  } catch (error: any) {
+    const errorMessages = getTextValues(error.message);
+    
+    await saveErrorMessage(errorMessages.toString());
 
-  const lastInsert: any = await con.query("SELECT LAST_INSERT_ID() as id");
-
-  if (lastInsert?.[0]?.length) {
-    await createSession(lastInsert[0][0].id);
+    redirect("/auth/signup");
   }
-
   // Current steps:
   // 4. Create user session
 
