@@ -1,5 +1,7 @@
 
 
+import { redirect } from "next/navigation";
+import { deleteSession } from "../lib/session";
 import { connect, deleteRow, submitForm } from "./action";
 import Deletebtn from "./components/Deletebtn";
 import Link from "next/link";
@@ -10,12 +12,24 @@ const getData  = async () => {
   const [rows] = await connection.query('SELECT * FROM tbl_users')
   return rows
 }
+
+const logout = async () => { 
+  'use server'
+
+  deleteSession()
+  redirect('/auth/login')
+}
+
 export default async function Page() {
 
   const data = await getData()
 
   return (
     <div className="p-4">
+
+      <form action="">
+      <button formAction={logout}>Logout</button>
+      </form>
       <form
   
       >
