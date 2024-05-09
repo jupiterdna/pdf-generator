@@ -1,10 +1,27 @@
 import { Text, View, StyleSheet, Font, Svg, Rect } from "@react-pdf/renderer";
 import React from 'react'
 
+const path = process.env.HOST
+Font.register({
+  family: "Karla",
+  fonts: [
+    {
+      fontWeight: "normal",
+      src: `${path}/font/Karla.ttf`,
+    },
+    {
+      fontWeight: "bold",
+      src: `${path}/font/Karla-Bold.ttf`,
+    },
+  ],
+});
+
 type DateComponentProps = {
     label?: string
     value?: string
 }
+
+
 
 const DateComponent = ({label ="Renter's Signature", value='12-12-2024'}: DateComponentProps) => {
   return (

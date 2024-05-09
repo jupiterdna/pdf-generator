@@ -1,11 +1,11 @@
 import { StyleSheet, Font } from "@react-pdf/renderer";
-const path = `${process.env.HOST}`;
+
+const path = process.env.HOST
 
 Font.register({
   family: "krona",
   src: "http://fonts.gstatic.com/s/kronaone/v4/ix3TbrGcGYAHLWi4hTTy1KCWcynf_cDxXwCLxiixG1c.ttf",
 });
-
 
 Font.register({
   family: "Karla",

@@ -27,8 +27,23 @@ import { public_path } from "@/utils";
 
 const host = process.env.HOST || "localhost";
 const port = process.env.PORT || 3000;
+const path = process.env.HOST;
 
 const image_path = `${host}/images`;
+
+Font.register({
+  family: "Karla",
+  fonts: [
+    {
+      fontWeight: "normal",
+      src: `${path}/font/Karla.ttf`,
+    },
+    {
+      fontWeight: "bold",
+      src: `${path}/font/Karla-Bold.ttf`,
+    },
+  ],
+});
 
 const style = StyleSheet.create({
   text: {

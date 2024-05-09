@@ -45,24 +45,6 @@ const port = process.env.PORT || 3000;
 
 const image_path = `${host}/images`;
 
-const style = StyleSheet.create({
-  text: {
-    fontSize: 8,
-    fontFamily: "Karla",
-  },
-  textHeading: {
-    fontSize: 9,
-    fontFamily: "Karla",
-    fontWeight: "bold",
-  },
-  row: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-});
-
-
 export const testTemplate  = (
 
   <Document style={{ display: "flex" }}>

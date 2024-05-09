@@ -3,6 +3,21 @@ import { Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 import { docStyles } from '../../styles';
 
 
+const path = process.env.HOST;
+Font.register({
+  family: "Karla",
+  fonts: [
+    {
+      fontWeight: "normal",
+      src: `${path}/font/Karla.ttf`,
+    },
+    {
+      fontWeight: "bold",
+      src: `${path}/font/Karla-Bold.ttf`,
+    },
+  ],
+});
+
 type dateType = {
   date?: string
   month?: string
