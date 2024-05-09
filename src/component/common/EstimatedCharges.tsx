@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, Image } from "@react-pdf/renderer";
+import { docStyles } from "../../styles";
 
 type headingType = {
   label: string;
@@ -32,6 +33,8 @@ const EstimatedCharges = ({ heading, rows,id, rowType }: EstimatedChargesProps) 
   const numRows = 100 / getRownumber(rows) === 0 ? 4 : 100 / getRownumber(rows);
 
   const disCountedStyle = rowType === "discount" ? { color: "#e75139" } : {};
+
+  return null
 
   return (
     <View key={id}>
@@ -98,12 +101,12 @@ const styles = StyleSheet.create({
   },
   textheading: {
     fontSize: 9,
-    fontFamily: "Karla",
+    // fontFamily: "Karla",
     fontWeight: "bold",
   },
   text: {
     fontSize: 8,
-    fontFamily: "Karla",
+    // fontFamily: "Karla",
   },
   //   content:{
   //     paddingVertical: 10,
