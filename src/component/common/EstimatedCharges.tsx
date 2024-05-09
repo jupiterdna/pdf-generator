@@ -34,8 +34,6 @@ const EstimatedCharges = ({ heading, rows,id, rowType }: EstimatedChargesProps) 
 
   const disCountedStyle = rowType === "discount" ? { color: "#e75139" } : {};
 
-  return null
-
   return (
     <View key={id}>
       <View style={styles.mainContainer}>
@@ -101,12 +99,12 @@ const styles = StyleSheet.create({
   },
   textheading: {
     fontSize: 9,
-    // fontFamily: "Karla",
+    fontFamily: "Karla",
     fontWeight: "bold",
   },
   text: {
     fontSize: 8,
-    // fontFamily: "Karla",
+    fontFamily: "Karla",
   },
   //   content:{
   //     paddingVertical: 10,

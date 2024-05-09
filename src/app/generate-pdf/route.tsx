@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const blob = await pdf(template(data)).toBlob();
     const buffer = await blob.arrayBuffer();
     const base64 = await Buffer.from(buffer).toString("base64");
-    // fs.writeFileSync('public/test.pdf', base64, );
+    // fsP.writeFileSync('public/test.pdf', base64, );
    
     // const filePath = `public/pdf/${fileName}`;
     // const asPdf = await fsP.writeFile(filePath, base64, "base64");
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
 
     // const url = `${process.env.HOST}/pdf/${fileName}`;
 
+    // return Response.json({ data: url}, { status: 200 });
     return Response.json({ data: 'data:application/pdf;base64,'+base64 }, { status: 200 });
   } catch (error) {
     return Response.json({ error: `There is an error in generating pdf`, message: error }, { status: 400 });
